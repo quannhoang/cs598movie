@@ -1,5 +1,7 @@
+import Navigation from '../components/Navigation'
 import Button from '../components/Button'
 import Header from '../components/Header'
+import Genres from '../components/Genres'
 
 export default function Page() {
     return (
@@ -7,8 +9,9 @@ export default function Page() {
             <body>
                 <Header />
                 <br />
-                <Button text="Recommender by Genre" />
-                <Button text="Recommender by Rating" />
+                <Navigation />
+                <br />
+                <Genres />
             </body>
         </>
     )
