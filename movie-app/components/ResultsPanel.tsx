@@ -1,12 +1,12 @@
 'use client';
 import React from 'react';
-import Collapsible from 'react-collapsible';
+import {MyCollapsible} from './MyCollapsible';
 import Image from 'next/image';
 import Genre from './Genre';
 
 const ResultsPanel = () => {
     return (
-      <Collapsible 
+      <MyCollapsible 
             trigger="Step 2: See your recommendations" 
             triggerClassName='bg-orange-400 text-white rounded-xl font-thin text-xl p-2' 
             triggerOpenedClassName='text-orange-900 font-light text-xl'
@@ -33,7 +33,7 @@ const ResultsPanel = () => {
             <Genre name="War"/>
             <Genre name="Western"/>
        </div>
-      </Collapsible>
+      </MyCollapsible>
     );
   };
   

@@ -7,15 +7,15 @@ import ResultsPanel from '../components/ResultsPanel'
 export default function Page() {
     return (
         <>
-            <body>
+            <div id='main'>
                 <Header />
                 <br />
-                <Navigation />
+                <Navigation selected='genres'/>
                 <br />
-                <GenresPanel />
+                <GenresPanel key='genres'/>
                 <br />
                 <ResultsPanel />
-            </body>
+            </div>
         </>
     )
 }

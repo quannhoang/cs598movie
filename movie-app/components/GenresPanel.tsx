@@ -1,15 +1,15 @@
 'use client';
 import React from 'react';
-import Collapsible from 'react-collapsible';
+import { MyCollapsible } from './MyCollapsible';
 import Image from 'next/image';
 import Genre from './Genre';
 
 const GenresPanel = () => {
     return (
-      <Collapsible 
+      <MyCollapsible 
             trigger="Step 1: Choose your favorite Genre" 
-            triggerClassName='bg-orange-400 text-white rounded-xl font-thin text-xl p-2' 
-            triggerOpenedClassName='text-orange-900 font-light text-xl'
+            triggerClassName='bg-orange-400 text-white rounded-xl font-thin text-xl p-2 cursor-pointer' 
+            triggerOpenedClassName='text-orange-900 font-light text-xl cursor-pointer'
             className='bg-orange-400 rounded-xl p-2 text-orange-900'  
             openedClassName='bg-orange-100 rounded-xl p-2 text-orange-900'
        >
@@ -33,7 +33,7 @@ const GenresPanel = () => {
             <Genre name="War"/>
             <Genre name="Western"/>
        </div>
-      </Collapsible>
+      </MyCollapsible>
     );
   };
   
