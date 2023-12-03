@@ -47,7 +47,7 @@ const PreferencesPanel = ({movies, loading}:{movies: any[], loading:boolean}) =>
             <>
                 {ALL_GENRES.map((genre) => { 
                     const samples: number[] = GENRES_SAMPLES[genre]
-                    return <GenreSamples genre={genre} movies={movies} samples={GENRES_SAMPLES[genre]}/>
+                    return <GenreSamples key={genre} genre={genre} movies={movies} samples={GENRES_SAMPLES[genre]}/>
                 })}
             </>
 

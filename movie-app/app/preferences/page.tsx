@@ -17,6 +17,9 @@ export default function Page () {
             setLoading(false)
           })
       }, [])
+    const reset = () => {
+        console.log('reset')
+    }
     return (
         <>
             <div id='main'>
@@ -26,7 +29,7 @@ export default function Page () {
                 <br />
                 <PreferencesPanel key='preferences' movies={movies} loading={loading}/>
                 <br />
-                <ResultsPanel ids={sampleResults} movies={movies} loading={loading}/>
+                <ResultsPanel ids={sampleResults} movies={movies} resultLoading={false} resultLoaded={false} reset={reset}/>
             </div>
         </>
     )

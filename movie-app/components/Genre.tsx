@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import { 
     FaGun, 
@@ -21,53 +22,43 @@ import { TbUfo } from "react-icons/tb";
 import { BsEmojiDizzyFill } from "react-icons/bs";
 
 
-const Genre = ({name}:{name: string}) => {
-    switch(name) {
-        case "Action":
-            return <Action/>
-        case "Adventure":
-            return <Adventure/>
-        case "Animation":
-            return <Animation/>
-        case "Children":
-            return <Children/>
-        case "Comedy":
-            return <Comedy/>
-        case "Crime":
-            return <Crime/>
-        case "Documentary":
-            return <Documentary/>
-        case "Drama":
-            return <Drama/>
-        case "Fantasy":
-            return <Fantasy/>
-        case "Film-Noir":
-            return <FilmNoir/>
-        case "Horror":
-            return <Horror/>
-        case "Musical":
-            return <Musical/>
-        case "Mystery":
-            return <Mystery/>
-        case "Romance":
-            return <Romance/>
-        case "Sci-Fi":
-            return <Scifi/>
-        case "Thriller":
-            return <Thriller/>
-        case "War":
-            return <War/>
-        case "Western":
-            return <Western/>
-        default:
-            return <Action/>
-    }
-
+const Genre = (
+    {name, onGenreSelect}:
+    {
+        name: string, 
+        onGenreSelect: (genre :string) => any
+    }) => {
+        return (
+            <>
+                <div className='cursor-pointer' onClick={() => onGenreSelect(name)}>
+                    {name === "Action" && <Action />}
+                    {name === "Adventure" && <Adventure />}
+                    {name === "Animation" && <Animation />}
+                    {name === "Children" && <Children />}
+                    {name === "Comedy" && <Comedy />}
+                    {name === "Crime" && <Crime />}
+                    {name === "Documentary" && <Documentary />}
+                    {name === "Drama" && <Drama />}
+                    {name === "Fantasy" && <Fantasy />}
+                    {name === "Film-Noir" && <FilmNoir />}
+                    {name === "Horror" && <Horror />}
+                    {name === "Musical" && <Musical />}
+                    {name === "Mystery" && <Mystery />}
+                    {name === "Romance" && <Romance />}
+                    {name === "Sci-Fi" && <Scifi />}
+                    {name === "Thriller" && <Thriller />}
+                    {name === "War" && <War />}
+                    {name === "Western" && <Western />}
+                </div>
+            </>
+        )
 }
+
+
 
 const Action = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
+        <div className='block h-100px w-100p'>
             <div className='pt-10 px-10 pb-2 text-6xl'>
             <FaGun/>
             </div>
