@@ -1,5 +1,4 @@
 import Navigation from '../components/Navigation'
-import Button from '../components/Button'
 import Header from '../components/Header'
 import GenresPanel from '../components/GenresPanel'
 import ResultsPanel from '../components/ResultsPanel'
@@ -14,7 +13,7 @@ export default function Page() {
                 <br />
                 <GenresPanel key='genres'/>
                 <br />
-                <ResultsPanel />
+                <ResultsPanel loading={true} ids={[]} movies={[]} />
             </div>
         </>
     )

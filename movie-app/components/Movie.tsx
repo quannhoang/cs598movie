@@ -20,11 +20,11 @@ const styles = {
   },
   
 }
-const Movie = ({id, title} : {id: string, title: string}) => {
+const Movie = ({id, title} : {id: number, title: string}) => {
     const [loading, setLoading] = React.useState(true)
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl border-slate-800'>
+        <div className='block h-100px w-100'>
+            <div className='pt-10 px-10 pb-2 text-6xl'>
             <Image
                 src={loading? `/loading.gif`: `/movieImages/${id}.jpg`}
                 onLoad= {() => setLoading(false)}
@@ -34,7 +34,7 @@ const Movie = ({id, title} : {id: string, title: string}) => {
                 style={loading ? styles.loading : styles.image}
             />
             </div>
-            <div className='w-100 text-center'>
+            <div className='w-40 text-center text-sm ml-3 p-2 break-normal'>
                 {title}
             </div>
         </div>

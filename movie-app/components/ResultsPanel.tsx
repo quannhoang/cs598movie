@@ -1,10 +1,11 @@
 'use client';
 import React from 'react';
 import {MyCollapsible} from './MyCollapsible';
-import Image from 'next/image';
-import Genre from './Genre';
+import Movie from './Movie'
+import {IMovie} from './PreferencesPanel'
+import Image from 'next/image'
 
-const ResultsPanel = () => {
+const ResultsPanel = ({ids, movies, loading}:{ids: number[], movies: any[], loading: boolean}) => {
     return (
       <MyCollapsible 
             trigger="Step 2: See your recommendations" 
@@ -13,26 +14,19 @@ const ResultsPanel = () => {
             className='bg-orange-400 rounded-xl p-2 text-orange-900'  
             openedClassName='bg-orange-100 rounded-xl p-2 text-orange-900'
        >
-       <div className='flex flex-wrap justify-center font-light'>
-            <Genre name="Action"/>
-            <Genre name="Adventure"/>
-            <Genre name="Animation"/>
-            <Genre name="Children"/>
-            <Genre name="Comedy"/>
-            <Genre name="Crime"/>
-            <Genre name="Documentary"/>
-            <Genre name="Drama"/>
-            <Genre name="Fantasy"/>
-            <Genre name="Film-Noir"/>
-            <Genre name="Horror"/>
-            <Genre name="Musical"/>
-            <Genre name="Mystery"/>
-            <Genre name="Romance"/>
-            <Genre name="Sci-Fi"/>
-            <Genre name="Thriller"/>
-            <Genre name="War"/>
-            <Genre name="Western"/>
-       </div>
+       {
+        loading ? 
+        <div className='w-full'>
+                <Image src='/loading.gif' alt='' width={200} height={200}/>
+        </div> :
+        <div className='flex flex-wrap justify-center font-light'>
+                {ids.map((id) => {
+                    const currentMovie: IMovie = movies[id]
+                    
+                    return <Movie id={id} title={currentMovie.title} />
+                })}
+        </div>
+       }
       </MyCollapsible>
     );
   };

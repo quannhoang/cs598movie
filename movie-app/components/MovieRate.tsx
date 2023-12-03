@@ -2,7 +2,7 @@ import React from 'react'
 import RateBar from './RateBar'
 import Movie from './Movie'
 
-const MovieRate = ({id, title} : {id: string, title: string}) => {
+const MovieRate = ({id, title} : {id: number, title: string}) => {
     const [score, setScore] = React.useState(0)
     const onRate = (score:number) => {
         setScore(score)

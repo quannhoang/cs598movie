@@ -21,7 +21,7 @@ import { TbUfo } from "react-icons/tb";
 import { BsEmojiDizzyFill } from "react-icons/bs";
 
 
-const Genre = ({name}:{name: string}) => {
+const GenreHorizontal = ({name}:{name: string}) => {
     switch(name) {
         case "Action":
             return <Action/>
@@ -67,8 +67,8 @@ const Genre = ({name}:{name: string}) => {
 
 const Action = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <FaGun/>
             </div>
             <div className='w-100 text-center'>
@@ -80,12 +80,12 @@ const Action = () => {
 
 const Adventure = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <FaCar/>
             </div>
             <div className='w-100 text-center'>
-            Adventure
+                Adventure
             </div>
         </div>
     )
@@ -93,12 +93,12 @@ const Adventure = () => {
 
 const Animation = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <MdOutlineSmartToy/>
             </div>
             <div className='w-100 text-center'>
-            Animation
+                Animation
             </div>
         </div>
     )
@@ -106,12 +106,12 @@ const Animation = () => {
 
 const Children = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <FaChildren/>
             </div>
             <div className='w-100 text-center'>
-            Children&apos;s
+                Children&apos;s
             </div>
         </div>
     )
@@ -119,12 +119,12 @@ const Children = () => {
 
 const Comedy = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <FaFaceSmileBeam/>
             </div>
             <div className='w-100 text-center'>
-            Comedy
+                Comedy
             </div>
         </div>
     )
@@ -132,12 +132,12 @@ const Comedy = () => {
 
 const Crime = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <RiKnifeBloodFill/>
             </div>
             <div className='w-100 text-center'>
-            Crime
+                Crime
             </div>
         </div>
     )
@@ -145,12 +145,12 @@ const Crime = () => {
 
 const Documentary = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <PiFilmSlate/>
             </div>
             <div className='w-100 text-center'>
-            Documentary
+                Documentary
             </div>
         </div>
     )
@@ -158,12 +158,12 @@ const Documentary = () => {
 
 const Drama = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <FaMasksTheater/>
             </div>
             <div className='w-100 text-center'>
-            Drama
+                Drama
             </div>
         </div>
     )
@@ -171,8 +171,8 @@ const Drama = () => {
 
 const Fantasy = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <SiGunicorn/>
             </div>
             <div className='w-100 text-center'>
@@ -184,8 +184,8 @@ const Fantasy = () => {
 
 const FilmNoir = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <RiTapeFill/>
             </div>
             <div className='w-100 text-center'>
@@ -197,8 +197,8 @@ const FilmNoir = () => {
 
 const Horror = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
             <GiEvilBook/>
             </div>
             <div className='w-100 text-center'>
@@ -210,38 +210,38 @@ const Horror = () => {
 
 const Musical = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
-            <FaMusic/>
-            </div>
-            <div className='w-100 text-center'>
-            Musical
-            </div>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+        <div className='pt-1 px-2'>
+        <FaMusic/>
         </div>
+        <div className='w-100 text-center'>
+            Musical
+        </div>
+    </div>
     )
 }
 
 const Mystery = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-            <div className='pt-10 px-10 pb-2 text-6xl'>
-            <SiQuicklook/>
-            </div>
-            <div className='w-100 text-center'>
-            Mystery
-            </div>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+        <div className='pt-1 px-2'>
+        <SiQuicklook/>
         </div>
+        <div className='w-100 text-center'>
+            Mystery
+        </div>
+    </div>
     )
 }
 
 const Romance = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-        <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+        <div className='pt-1 px-2'>
         <FaHeart/>
         </div>
         <div className='w-100 text-center'>
-        Romance
+            Romance
         </div>
     </div>
     )
@@ -249,12 +249,12 @@ const Romance = () => {
 
 const Scifi = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-        <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+        <div className='pt-1 px-2'>
         <TbUfo/>
         </div>
         <div className='w-100 text-center'>
-        Sci-Fi
+            Sci-Fi
         </div>
     </div>
     )
@@ -262,12 +262,12 @@ const Scifi = () => {
 
 const Thriller = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-        <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+        <div className='pt-1 px-2'>
         <BsEmojiDizzyFill/>
         </div>
         <div className='w-100 text-center'>
-        Thriller
+            Thriller
         </div>
     </div>
     )
@@ -275,12 +275,12 @@ const Thriller = () => {
 
 const War = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-        <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+        <div className='pt-1 px-2'>
         <GiPirateCannon/>
         </div>
         <div className='w-100 text-center'>
-        War
+            War
         </div>
     </div>
     )
@@ -288,8 +288,8 @@ const War = () => {
 
 const Western = () => {
     return (
-        <div className='block h-100px w-100px border-slate-700'>
-        <div className='pt-10 px-10 pb-2 text-6xl'>
+        <div className='flex h-100px w-100px text-3xl font-bold'>
+            <div className='pt-1 px-2'>
         <FaHatCowboy/>
         </div>
         <div className='w-100 text-center'>
@@ -300,4 +300,5 @@ const Western = () => {
 }
 
 
-export default Genre
+
+export default GenreHorizontal
