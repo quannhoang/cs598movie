@@ -5,21 +5,55 @@ import PreferencesPanel from '../../components/PreferencesPanel'
 import ResultsPanel from '../../components/ResultsPanel'
 import React, { useEffect, useState } from 'react';
 
-const sampleResults = [1,2,3,4,5,6,7,8,9,10]
+export interface IUserMovieRate {
+    id: number,
+    score: number
+}
+
+
 export default function Page () {
     const [movies, setMovies] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [moviesLoading, setMoviesLoading] = useState(true)
+    const [topMovies, setTopMovies] = useState<number[]>([])
+    const [resultLoaded, setResultLoaded] = useState(false)
+    const [resultLoading, setResultLoading] = useState(false)
+    // userMovieRate is an object with keys as movie ids and values as IUserMovieRate
+    const [userMovieRates, setUserMovieRates] = useState<{[key: number]: IUserMovieRate}>({})
+
+    const onMovieRate = (id: number, score: number) => {
+        const newUserMovieRates = {...userMovieRates}
+        newUserMovieRates[id] = {id, score}
+        setUserMovieRates(newUserMovieRates)
+        console.log(`Movie ${id} rated ${score}`)
+    }
+
+    const onReset = () => {
+        console.log('Reset movie rates')
+        setUserMovieRates({})
+        window.scrollTo(0,0);
+    }
+
+    const onGetRecommendations = () => {
+        setResultLoaded(false)
+        setResultLoading(true)
+        console.log('Get recommendations')
+        console.log(userMovieRates)
+        // Hardcoded for now
+        setTopMovies([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        setResultLoaded(true)
+        // scroll to bottom 
+        window.scrollTo(0,document.body.scrollHeight);
+    }
+
     useEffect(() => {
         fetch('/data/movies.json')
           .then((res) => res.json())
           .then((data) => {
             setMovies(data)
-            setLoading(false)
+            setMoviesLoading(false)
           })
       }, [])
-    const reset = () => {
-        console.log('reset')
-    }
+
     return (
         <>
             <div id='main'>
@@ -27,9 +61,17 @@ export default function Page () {
                 <br />
                 <Navigation selected='preferences' />
                 <br />
-                <PreferencesPanel key='preferences' movies={movies} loading={loading}/>
+                <PreferencesPanel 
+                    key='preferences' 
+                    movies={movies} 
+                    loading={moviesLoading} 
+                    userMovieRates={userMovieRates} 
+                    onMovieRate={onMovieRate}
+                    onGetRecommendations={onGetRecommendations}
+                    onReset={onReset}
+                />
                 <br />
-                <ResultsPanel ids={sampleResults} movies={movies} resultLoading={false} resultLoaded={false} reset={reset}/>
+                <ResultsPanel ids={topMovies} movies={movies} resultLoading={resultLoading} resultLoaded={resultLoaded}/>
             </div>
         </>
     )

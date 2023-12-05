@@ -4,6 +4,7 @@ import {MyCollapsible} from './MyCollapsible';
 import MovieRate from './MovieRate';
 import Image from 'next/image'
 import GenreSamples from './GenreSamples';
+import Button from './Button';
 
 export interface IMovie {
     title: string;
@@ -30,8 +31,24 @@ const GENRES_SAMPLES: {[key: string]: number[]} = {
     'War': [1210, 2816, 2028, 3585, 2662, 1507, 1263],
     'Western': [967, 3122, 2527, 3074, 432, 3508, 1209]
 }
-const PreferencesPanel = ({movies, loading}:{movies: any[], loading:boolean}) => {
-
+const PreferencesPanel = (
+    {
+        movies, 
+        loading, 
+        userMovieRates,
+        onMovieRate,
+        onGetRecommendations,
+        onReset
+    }:
+    {
+        movies: any[], 
+        loading:boolean, 
+        userMovieRates: {[key: number]: {id: number, score: number}},
+        onMovieRate:(id:number, score:number) => void,
+        onGetRecommendations: () => void,
+        onReset: () => void
+    }) => {
+        const [open, setOpen] = useState(false);
     return (
       <MyCollapsible 
             trigger="Step 1: Rate as many movies as possible" 
@@ -40,6 +57,10 @@ const PreferencesPanel = ({movies, loading}:{movies: any[], loading:boolean}) =>
             className='bg-orange-400 rounded-xl p-2 text-orange-900'  
             openedClassName='bg-orange-100 rounded-xl p-2 text-orange-900'
        >
+        <div className='sticky top-0 flex flex-row  justify-center items-center'>
+            <Button text='Get Your Recommendations' onClick={onGetRecommendations}/>
+            <Button text='Reset' onClick={onReset}/>
+        </div>
        {loading ? 
             <div className='w-full'>
                 <Image src='/loading.gif' alt='' width={200} height={200}/>
@@ -47,11 +68,15 @@ const PreferencesPanel = ({movies, loading}:{movies: any[], loading:boolean}) =>
             <>
                 {ALL_GENRES.map((genre) => { 
                     const samples: number[] = GENRES_SAMPLES[genre]
-                    return <GenreSamples key={genre} genre={genre} movies={movies} samples={GENRES_SAMPLES[genre]}/>
+                    return <GenreSamples key={genre} genre={genre} movies={movies} samples={GENRES_SAMPLES[genre]} userMovieRates={userMovieRates}  onMovieRate={onMovieRate}/>
                 })}
             </>
 
         }
+        <div className='sticky top-0 flex flex-row  justify-center items-center mb-5'>
+            <Button text='Get Your Recommendations' onClick={onGetRecommendations}/>
+            <Button text='Reset' onClick={onReset}/>
+        </div>
       </MyCollapsible>
     );
   };

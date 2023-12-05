@@ -1,8 +1,6 @@
 'use client';
 import React, { useEffect } from 'react'
 import Image from 'next/image'
-import RateBar from './RateBar'
-import { TbUserQuestion } from 'react-icons/tb';
 
 const styles = {
   image: {
@@ -17,8 +15,8 @@ const styles = {
     borderColor: 'orange',
     borderWidth: 2,
     borderRadius: 20,
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 135,
   },
   
 }

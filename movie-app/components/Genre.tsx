@@ -30,7 +30,7 @@ const Genre = (
     }) => {
         return (
             <>
-                <div className='cursor-pointer' onClick={() => onGenreSelect(name)}>
+                <div className='cursor-pointer hover:text-orange-400' onClick={() => onGenreSelect(name)}>
                     {name === "Action" && <Action />}
                     {name === "Adventure" && <Adventure />}
                     {name === "Animation" && <Animation />}

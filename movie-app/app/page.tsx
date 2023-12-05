@@ -9,7 +9,7 @@ export default function Page() {
     const [movies, setMovies] = useState([])
     const [resultLoaded, setResultLoaded] = useState(false)
     const [resultLoading, setResultLoading] = useState(false)
-    const [topIds, setTopIds] = useState<number[]>([])
+    const [topMovies, setTopMovies] = useState<number[]>([])
     useEffect(() => {
         fetch('/data/movies.json')
           .then((res) => res.json())
@@ -20,7 +20,7 @@ export default function Page() {
     const reset = () => {
         setResultLoaded(false)
         setResultLoading(false)
-        setTopIds([])
+        setTopMovies([])
     }
     const onGenreSelect = (genre:string) => {
         setResultLoaded(false)
@@ -37,10 +37,12 @@ export default function Page() {
                 randomIds.push(randomId)
             }
         }
-        setTopIds([])
-        setTopIds(randomIds) 
+        setTopMovies([])
+        setTopMovies(randomIds) 
         setResultLoading(false)
         setResultLoaded(true)
+        // Scroll to bottom
+        window.scrollTo(0,document.body.scrollHeight);
     }
     return (
         <>
@@ -51,7 +53,7 @@ export default function Page() {
                 <br />
                 <GenresPanel key='genres' onGenreSelect={onGenreSelect}/>
                 <br />
-                <ResultsPanel resultLoading={resultLoading} resultLoaded={resultLoaded} ids={topIds} movies={movies} reset={reset} />
+                <ResultsPanel resultLoading={resultLoading} resultLoaded={resultLoaded} ids={topMovies} movies={movies}/>
             </div>
         </>
     )

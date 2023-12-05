@@ -11,18 +11,20 @@ const ResultsPanel = (
         movies, 
         resultLoaded,
         resultLoading,
-        reset
     }:
     {
         ids: number[], 
         movies: any[],
         resultLoading: boolean,
-        resultLoaded: boolean,
-        reset: () => void
+        resultLoaded: boolean
     }) => {
         const moviesList = ids.map((id) => {
             const currentMovie: IMovie = movies[id]
-            return currentMovie && <Movie key={id} id={id} title={currentMovie.title} />
+            if (currentMovie) { 
+                return <Movie key={id} id={id} title={currentMovie.title} />
+            } else {
+                return <Movie key={id} id={0} title='Movie not found' />
+            }   
         })
     return (
       <MyCollapsible 

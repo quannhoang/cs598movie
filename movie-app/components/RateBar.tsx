@@ -15,7 +15,7 @@ const RateBar = (
     const [hoverScore, setHoverScore] = React.useState(0)
   return (
     <>
-        <div className='flex flex-wrap justify-center font-light text-lg'>
+        <div className='flex flex-wrap justify-center font-light text-lg text-orange-400'>
             <div className='flex flex-row'>
                 <button 
                     onClick={() => setScore(1)} 
