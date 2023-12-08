@@ -23,25 +23,30 @@ export default function Page() {
         setResultLoading(false)
         setTopMovies([])
     }
-    const onGenreSelect = (genre:string) => {
+    const onGenreSelect = async (genre:string) => {
         setResultLoaded(false)
         setResultLoading(true)
-        console.log(`Genre ${genre} selected`)
-        // TODO: Replace with actual API call
-        // API CALL START HERE
-
-        // If API call failed please set resultFailed to true
-        setResultFailed(false)
-        // Expected result: an array of movies ids (number)
-        // Randomly select 10 movies for now
-        const randomIds: number[] = []
-        while (randomIds.length < 10) {
-            const randomId = Math.floor(Math.random() * 3000) + 1
-            if (!randomIds.includes(randomId)) {
-                randomIds.push(randomId)
-            }
+        if (genre === "Children") {
+            genre = "Children's"
         }
-        setTopMovies(randomIds) 
+
+        console.log(`Genre ${genre} selected`)
+        let movieIds = []
+        
+        try {
+            const response = await fetch(`http://localhost:5000/api/movies_for_genre?genre=${genre}`);
+            const data = await response.json();
+            console.log(data["movies"]);
+            movieIds = data["movies"]
+            
+            setResultLoaded(true)
+          } catch (error) {
+            console.error('Error:', error);
+        }
+        
+        setTopMovies([])
+        setTopMovies(movieIds) 
+        setResultLoading(false)
         // Scroll to bottom
         window.scrollTo(0,document.body.scrollHeight);
         setResultLoading(false)

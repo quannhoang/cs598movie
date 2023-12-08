@@ -34,19 +34,23 @@ export default function Page () {
         window.scrollTo(0,0);
     }
 
-    const onGetRecommendations = () => {
+    const onGetRecommendations = async () => {
         setResultLoaded(false)
         setResultLoading(true)
         console.log('Get recommendations')
         console.log(userMovieRates)
-        // TODO: Replace with actual API call
-        // API CALL START HERE
-
-        // If failed please set resultFailed to true
-        setResultFailed(false)
-        // Expected result: an array of movies ids (number)
-        // Hardcoded for now
-        setTopMovies([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        // make a request dict for ratings
+        const response = await fetch('http://localhost:5000/api/movies_for_ratings', {method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+            body: JSON.stringify({"ratings": userMovieRates}),
+        });
+        
+        let data = await response.json();
+        console.log(data)
+        setTopMovies(data.movies)
+        setResultLoaded(true)
         // scroll to bottom 
         window.scrollTo(0,document.body.scrollHeight);
         setResultLoading(false)
