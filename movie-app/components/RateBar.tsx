@@ -19,36 +19,36 @@ const RateBar = (
             <div className='flex flex-row'>
                 <button 
                     onClick={() => setScore(1)} 
-                    onMouseEnter={() => setHoverScore(1)} 
-                    onMouseLeave={() => setHoverScore(0)}
+                    onMouseOver={() => setHoverScore(1)} 
+                    onMouseOut={() => setHoverScore(0)}
                 >
                     {score >= 1 || hoverScore >= 1 ? <GoStarFill /> : <FiStar />}
                 </button>
                 <button 
                     onClick={() => setScore(2)} 
-                    onMouseEnter={() => setHoverScore(2)} 
-                    onMouseLeave={() => setHoverScore(0)}
+                    onMouseOver={() => setHoverScore(2)} 
+                    onMouseOut={() => setHoverScore(0)}
                 >
                     {score >= 2 || hoverScore >= 2 ? <GoStarFill /> : <FiStar />}
                 </button>
                 <button 
                     onClick={() => setScore(3)} 
-                    onMouseEnter={() => setHoverScore(3)} 
-                    onMouseLeave={() => setHoverScore(0)}
+                    onMouseOver={() => setHoverScore(3)} 
+                    onMouseOut={() => setHoverScore(0)}
                 >
                     {score >= 3 || hoverScore >= 3 ? <GoStarFill /> : <FiStar />}
                 </button>
                 <button 
                     onClick={() => setScore(4)} 
-                    onMouseEnter={() => setHoverScore(4)} 
-                    onMouseLeave={() => setHoverScore(0)}
+                    onMouseOver={() => setHoverScore(4)} 
+                    onMouseOut={() => setHoverScore(0)}
                 >
                     {score >= 4 || hoverScore >= 4 ? <GoStarFill /> : <FiStar />}
                 </button>
                 <button 
                     onClick={() => setScore(5)} 
-                    onMouseEnter={() => setHoverScore(5)} 
-                    onMouseLeave={() => setHoverScore(0)}
+                    onMouseOver={() => setHoverScore(5)} 
+                    onMouseOut={() => setHoverScore(0)}
                 >
                     {score >= 5 || hoverScore >= 5 ? <GoStarFill /> : <FiStar />}
                 </button>
