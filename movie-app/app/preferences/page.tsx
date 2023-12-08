@@ -17,6 +17,7 @@ export default function Page () {
     const [topMovies, setTopMovies] = useState<number[]>([])
     const [resultLoaded, setResultLoaded] = useState(false)
     const [resultLoading, setResultLoading] = useState(false)
+    const [resultFailed, setResultFailed] = useState(false)
     // userMovieRate is an object with keys as movie ids and values as IUserMovieRate
     const [userMovieRates, setUserMovieRates] = useState<{[key: number]: IUserMovieRate}>({})
 
@@ -38,11 +39,18 @@ export default function Page () {
         setResultLoading(true)
         console.log('Get recommendations')
         console.log(userMovieRates)
+        // TODO: Replace with actual API call
+        // API CALL START HERE
+
+        // If failed please set resultFailed to true
+        setResultFailed(false)
+        // Expected result: an array of movies ids (number)
         // Hardcoded for now
         setTopMovies([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-        setResultLoaded(true)
         // scroll to bottom 
         window.scrollTo(0,document.body.scrollHeight);
+        setResultLoading(false)
+        setResultLoaded(true)
     }
 
     useEffect(() => {
@@ -71,7 +79,7 @@ export default function Page () {
                     onReset={onReset}
                 />
                 <br />
-                <ResultsPanel ids={topMovies} movies={movies} resultLoading={resultLoading} resultLoaded={resultLoaded}/>
+                <ResultsPanel ids={topMovies} movies={movies} resultLoading={resultLoading} resultLoaded={resultLoaded} resultFailed={resultFailed}/>
             </div>
         </>
     )

@@ -11,12 +11,14 @@ const ResultsPanel = (
         movies, 
         resultLoaded,
         resultLoading,
+        resultFailed,
     }:
     {
         ids: number[], 
         movies: any[],
         resultLoading: boolean,
-        resultLoaded: boolean
+        resultLoaded: boolean,
+        resultFailed: boolean,
     }) => {
         const moviesList = ids.map((id) => {
             const currentMovie: IMovie = movies[id]
@@ -33,22 +35,29 @@ const ResultsPanel = (
             triggerOpenedClassName='text-orange-900 font-light text-xl h-500'
             className='bg-orange-400 rounded-xl p-2 text-orange-900'  
             openedClassName='bg-orange-100 rounded-xl p-2 text-orange-900'
-            open={resultLoaded}
+            open={resultLoading || resultLoaded || resultFailed}
        >
+
         {
-            (!resultLoading && !resultLoaded) &&
+            resultFailed &&
+            <div className='w-full text-center text-xl font-bold p-10'>
+                    Something went wrong, please try again
+            </div>
+        }
+        {
+            (!resultFailed && !resultLoading && !resultLoaded) &&
             <div className='w-full text-center text-xl font-bold p-10'>
                     Please complete Step 1 first to see your recommendations
             </div> 
         }
         {
-            (resultLoading && !resultLoaded) &&
+            (!resultFailed && resultLoading && !resultLoaded) &&
             <div className='w-full align-middle text-xl font-bold p-10'>
                     <Image src='/loading.gif' alt='' width={100} height={100}/>
             </div> 
         }
         {
-            resultLoaded &&
+            !resultFailed && resultLoaded &&
             <div className='flex flex-wrap justify-center font-light'>
                     {moviesList}
             </div>

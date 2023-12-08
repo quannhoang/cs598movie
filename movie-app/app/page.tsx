@@ -9,6 +9,7 @@ export default function Page() {
     const [movies, setMovies] = useState([])
     const [resultLoaded, setResultLoaded] = useState(false)
     const [resultLoading, setResultLoading] = useState(false)
+    const [resultFailed, setResultFailed] = useState(false)
     const [topMovies, setTopMovies] = useState<number[]>([])
     useEffect(() => {
         fetch('/data/movies.json')
@@ -26,10 +27,13 @@ export default function Page() {
         setResultLoaded(false)
         setResultLoading(true)
         console.log(`Genre ${genre} selected`)
-        // Hardcoded for now
         // TODO: Replace with actual API call
-        // Create a random list of 10 ids from 1 to 3000
-        // Do not accept duplicates
+        // API CALL START HERE
+
+        // If API call failed please set resultFailed to true
+        setResultFailed(false)
+        // Expected result: an array of movies ids (number)
+        // Randomly select 10 movies for now
         const randomIds: number[] = []
         while (randomIds.length < 10) {
             const randomId = Math.floor(Math.random() * 3000) + 1
@@ -37,12 +41,11 @@ export default function Page() {
                 randomIds.push(randomId)
             }
         }
-        setTopMovies([])
         setTopMovies(randomIds) 
-        setResultLoading(false)
-        setResultLoaded(true)
         // Scroll to bottom
         window.scrollTo(0,document.body.scrollHeight);
+        setResultLoading(false)
+        setResultLoaded(true)
     }
     return (
         <>
@@ -53,7 +56,7 @@ export default function Page() {
                 <br />
                 <GenresPanel key='genres' onGenreSelect={onGenreSelect}/>
                 <br />
-                <ResultsPanel resultLoading={resultLoading} resultLoaded={resultLoaded} ids={topMovies} movies={movies}/>
+                <ResultsPanel resultLoading={resultLoading} resultLoaded={resultLoaded} resultFailed={resultFailed} ids={topMovies} movies={movies}/>
             </div>
         </>
     )
