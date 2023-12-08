@@ -7,6 +7,7 @@ Please follow the official guide for your OS installation
 [Nodejs installation using package manager](https://nodejs.org/en/download/package-manager/)
 
 Step 2: Install nodejs packages
+
 Move to the movie-app directory
 ```bash
 cd cs598movie/movie-app
