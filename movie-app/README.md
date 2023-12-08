@@ -29,6 +29,7 @@ npm run start
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 Step 3 (Alternative): Run the app on development/hot-reload mode. 
+
 ***Note: this mode will run slower and consume more resources***
 ```bash
 npm run dev
