@@ -46,7 +46,13 @@ export default function Page () {
         },
             body: JSON.stringify({"ratings": userMovieRates}),
         });
-        
+        // if failed
+        if (!response.ok) {
+            console.log('Failed to get recommendations')
+            setResultFailed(true)
+            setResultLoading(false)
+            return
+        }
         let data = await response.json();
         console.log(data)
         setTopMovies(data.movies)

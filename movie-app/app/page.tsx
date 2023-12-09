@@ -42,6 +42,7 @@ export default function Page() {
             setResultLoaded(true)
           } catch (error) {
             console.error('Error:', error);
+            setResultFailed(true)
         }
         
         setTopMovies([])
