@@ -35,7 +35,7 @@ export default function Page() {
         
         try {
             // Add CORS header
-            const response = await fetch(`http://localhost:5000/api/genres/${genre}`, {
+            const response = await fetch(`http://localhost:5000/api/movies_for_genre?genre=${genre}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,8 +45,9 @@ export default function Page() {
             const data = await response.json();
             console.log(data["movies"]);
             movieIds = data["movies"]
-            
             setResultLoaded(true)
+            setResultLoading(false)
+            setResultFailed(false)
           } catch (error) {
             console.error('Error:', error);
             setResultFailed(true)

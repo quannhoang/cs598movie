@@ -39,31 +39,32 @@ export default function Page () {
         setResultLoading(true)
         console.log('Get recommendations')
         console.log(userMovieRates)
-        try {
-            // make a request dict for ratings
-            // add CORS header
-            const response = await fetch('http://localhost:5000/api/recommendations', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                body: JSON.stringify(userMovieRates)
-            })
+        // make a request dict for ratings
+        // add CORS header
+        
+        const response = await fetch('http://localhost:5000/api/movies_for_ratings', {method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+         'Access-Control-Allow-Origin': '*'
 
-            let data = await response.json();
-            console.log(data)
-            setTopMovies(data.movies)
-            setResultLoaded(true)
-            // scroll to bottom 
-            window.scrollTo(0,document.body.scrollHeight);
-            setResultLoading(false)
-            setResultLoaded(true)
-        } catch (error) {
-            console.error('Error:', error);
+        },
+            body: JSON.stringify({"ratings": userMovieRates}),
+        });
+        // if failed
+        if (!response.ok) {
+            console.log('Failed to get recommendations')
             setResultFailed(true)
+            setResultLoading(false)
+            return
         }
-
+        let data = await response.json();
+        console.log(data)
+        setTopMovies(data.movies)
+        setResultLoaded(true)
+        // scroll to bottom 
+        window.scrollTo(0,document.body.scrollHeight);
+        setResultLoading(false)
+        setResultLoaded(true)
     }
 
     useEffect(() => {
