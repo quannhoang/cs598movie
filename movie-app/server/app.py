@@ -4,8 +4,8 @@ from flask import Flask, request
 from flask_cors import CORS
 from ml import MOVIE_RECOMMENDER, cosineSimilarityMatrixTop30, df_R
 app = Flask(__name__)
-CORS(app)
-
+# allow CORS from all domains on all routes
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route('/api/movies_for_genre', methods=['GET'])
