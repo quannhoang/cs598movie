@@ -37,3 +37,5 @@ next-env.d.ts
 
 # data
 /dataprocess
+
+__pycache__/

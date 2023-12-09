@@ -14,53 +14,64 @@ df_r = pd.read_csv("ratings.dat", sep = '::', names = ['UserID', 'MovieID', 'Rat
 # load users.dat
 df_u = pd.read_csv("users.dat", sep = '::', names = ['UserID', 'Gender', 'Age', 'Occupation', 'Zip-code'], encoding='latin-1')
 
-# Get the unique genres
-all_genres = df_m['Genres']
-unique_genres = {}
-for movie in all_genres.values.tolist():
-    genres = movie.split("|")
-    for genre in genres:
-        if genre not in unique_genres:
-            unique_genres[genre] = []
-        else:
-            continue
+# Unzip cosineSim.zip
+import zipfile
+with zipfile.ZipFile("cosineSim.zip","r") as zip_ref:
+    zip_ref.extractall(".")
+# Unzip cosineSimTop30.zip
+with zipfile.ZipFile("cosineSim30.zip","r") as zip_ref:
+    zip_ref.extractall(".")
 
-# step 1
-def averageRating(movieID, ratingDF):
-    movieRatings = ratingDF.loc[ratingDF['MovieID'] == movieID]['Rating']
-    if movieRatings.shape[0] > 500:
-        return np.average(movieRatings.values)
-    else:
-        return 0
+# # Get the unique genres
+# all_genres = df_m['Genres']
+# unique_genres = {}
+# for movie in all_genres.values.tolist():
+#     genres = movie.split("|")
+#     for genre in genres:
+#         if genre not in unique_genres:
+#             unique_genres[genre] = []
+#         else:
+#             continue
 
-movie_ratings = []
-for i, row in df_m.iterrows():
-    movieID = row['MovieID']
-    aveRating = averageRating(movieID, df_r)
-    movie_ratings = movie_ratings + [aveRating]
+# # step 1
+# def averageRating(movieID, ratingDF):
+#     movieRatings = ratingDF.loc[ratingDF['MovieID'] == movieID]['Rating']
+#     if movieRatings.shape[0] > 500:
+#         return np.average(movieRatings.values)
+#     else:
+#         return 0
 
-df_m['AverageRating'] = movie_ratings
+# movie_ratings = []
+# for i, row in df_m.iterrows():
+#     movieID = row['MovieID']
+#     aveRating = averageRating(movieID, df_r)
+#     movie_ratings = movie_ratings + [aveRating]
 
-# step 2.1
-movies_by_genre_dict = unique_genres.copy()
-for i, row in df_m.iterrows():
-    movieID = row['MovieID']
-    aveRating = row['AverageRating']
-    genres = row['Genres']
-    title = row['Title']
-    for genre in genres.split('|'):
-        movies_by_genre_dict[genre].append([title, aveRating, movieID])
+# df_m['AverageRating'] = movie_ratings
 
-# step 2.2
-for item in movies_by_genre_dict:
-    original_list = movies_by_genre_dict[item]
-    movies_by_genre_dict[item] = sorted(original_list, key=lambda x: x[1], reverse=True)
+# # step 2.1
+# movies_by_genre_dict = unique_genres.copy()
+# for i, row in df_m.iterrows():
+#     movieID = row['MovieID']
+#     aveRating = row['AverageRating']
+#     genres = row['Genres']
+#     title = row['Title']
+#     for genre in genres.split('|'):
+#         movies_by_genre_dict[genre].append([title, aveRating, movieID])
 
-# step 3
-# createa dictionary of tuples (Title, movieID) for each genre
-recommendation_by_genre = {}
-for item in movies_by_genre_dict:
-    recommendation_by_genre[item] = [(movie[0], movie[2]) for movie in movies_by_genre_dict[item][:10]]
+# # step 2.2
+# for item in movies_by_genre_dict:
+#     original_list = movies_by_genre_dict[item]
+#     movies_by_genre_dict[item] = sorted(original_list, key=lambda x: x[1], reverse=True)
+
+# # step 3
+# # createa dictionary of tuples (Title, movieID) for each genre
+# recommendation_by_genre = {}
+# for item in movies_by_genre_dict:
+#     recommendation_by_genre[item] = [(movie[0], movie[2]) for movie in movies_by_genre_dict[item][:10]]
+# # save recommendation_by_genre dict to json file
+# with open('recommendation_by_genre.json', 'w') as fp:
+#     json.dump(recommendation_by_genre, fp)
 
 # Content based filtering data
 df_R = pd.read_csv("Rmat.csv")
@@ -73,11 +84,17 @@ df_subtracted = df_R.subtract(values_to_subtract, axis=0)
 class MovieRecommender:
     def __init__(self):
         #print(recommendation_by_genre.keys())
-        pass
+        # load recommendation_by_genre.json
+        with open('recommendation_by_genre.json', 'r') as fp:
+            recommendation_by_genre = json.load(fp)
+        self.recommendation_by_genre = recommendation_by_genre
 
     def get_movie_ids_for_genre(self, genre):
         """Returns a list of movie ids for the given genre"""
-        return [item[1] for item in recommendation_by_genre[genre]]
+        # if genre is Children, change it to Children's
+        if genre == "Children":
+            genre = "Children's"
+        return [item[1] for item in self.recommendation_by_genre[genre]]
     
     @staticmethod
     def CosS(i, j, df):
