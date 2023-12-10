@@ -42,10 +42,10 @@ export default function Page () {
         // make a request dict for ratings
         // add CORS header
         
-        const response = await fetch('http://localhost:5000/api/movies_for_ratings', {method: 'POST', // or 'PUT'
+        const response = await fetch('/api/movies_for_ratings', {method: 'POST', // or 'PUT'
         headers: {
           'Content-Type': 'application/json',
-         'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': '*'
 
         },
             body: JSON.stringify({"ratings": userMovieRates}),
