@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Step 1: Running the front end
 
 Step 1.1: Install nodejs version 19.0.0 or later 
@@ -54,8 +52,7 @@ Install required python packages
 pip3 install -r requirements.txt
 ```
 
-Step 3.3: Run the backend app (Flask)
-Build the app
+Step 2.3: Run the backend app (Flask)
 ```bash
 flask --app app run
 ```
