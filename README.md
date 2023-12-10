@@ -1,3 +1,4 @@
+# This repo contains code needed to run a movie recommender application with nextjs frontend and flask backend.
 # For the version of app we are running on AWS visit 
 http://ec2-54-211-141-162.compute-1.amazonaws.com:3000
 
