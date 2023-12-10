@@ -1,3 +1,6 @@
+# For the version of app we are running on AWS visit 
+http://ec2-54-211-141-162.compute-1.amazonaws.com:3000
+
 ## Step 1: Running the front end
 
 Step 1.1: Install nodejs version 19.0.0 or later 
